@@ -23,11 +23,17 @@ _global_script_classes=[{
 "class": &"Jumper",
 "language": &"GDScript",
 "path": "res://objects/jumper/jumper.gd"
+}, {
+"base": "Node",
+"class": &"Screens",
+"language": &"GDScript",
+"path": "res://ui/screens.gd"
 }]
 _global_script_class_icons={
 "BaseScreen": "",
 "Circle": "",
-"Jumper": ""
+"Jumper": "",
+"Screens": ""
 }
 
 [application]

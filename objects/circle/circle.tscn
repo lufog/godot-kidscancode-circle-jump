@@ -1,9 +1,9 @@
-[gd_scene load_steps=10 format=3]
+[gd_scene load_steps=10 format=3 uid="uid://cu5up5jwpffxx"]
 
 [ext_resource type="Shader" path="res://objects/color.gdshader" id="1_3w38j"]
 [ext_resource type="Script" path="res://objects/circle/circle.gd" id="1_uonuk"]
 [ext_resource type="Texture2D" uid="uid://b6f3o4i1sn1wi" path="res://objects/circle/assets/textures/circle1_n.png" id="1_wbyw3"]
-[ext_resource type="FontData" path="res://ui/assets/fonts/Xolonium-Regular.ttf" id="4_ewjua"]
+[ext_resource type="FontData" uid="uid://by5eeun81hxh3" path="res://ui/assets/fonts/Xolonium-Regular.ttf" id="4_ewjua"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dvxgt"]
 shader = ExtResource( "1_3w38j" )
@@ -143,7 +143,7 @@ tracks/1/keys = {
 [sub_resource type="Font" id="Font_mypfm"]
 data/0 = ExtResource( "4_ewjua" )
 
-[node name="Circle" type="Area2D"]
+[node name="Circle" type="Area2D" groups=["circles"]]
 script = ExtResource( "1_uonuk" )
 
 [node name="Sprite" type="Sprite2D" parent="."]

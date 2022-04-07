@@ -3,6 +3,7 @@ extends Area2D
 
 
 signal captured(area: Area2D)
+signal died
 
 
 var velocity: Vector2
@@ -48,6 +49,8 @@ func jump() -> void:
 
 
 func die() -> void:
+	print("died")
+	died.emit()
 	current_circle = null
 	queue_free()
 

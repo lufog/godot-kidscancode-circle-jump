@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bhu4fb5xfp07q"]
+[gd_scene load_steps=3 format=3 uid="uid://bhu4fb5xfp07q"]
 
 [ext_resource type="Script" path="res://main/main.gd" id="1_1h61n"]
+[ext_resource type="PackedScene" uid="uid://b7qimbug872d3" path="res://ui/screens.tscn" id="2_obuy5"]
 
 [node name="Main" type="Node"]
 script = ExtResource( "1_1h61n" )
@@ -11,3 +12,7 @@ script = ExtResource( "1_1h61n" )
 offset = Vector2(0, -200)
 current = true
 smoothing_enabled = true
+
+[node name="Screens" parent="." instance=ExtResource( "2_obuy5" )]
+
+[connection signal="start_game" from="Screens" to="." method="_new_game"]
