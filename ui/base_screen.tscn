@@ -1,0 +1,47 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://ui/base_screen.gd" id="1_0p423"]
+[ext_resource type="Font" path="res://ui/assets/fonts/xolonium_regular.tres" id="1_cebw7"]
+
+[node name="BaseScreen" type="CanvasLayer"]
+offset = Vector2(500, 0)
+transform = Transform2D(1, 0, 0, 1, 500, 0)
+script = ExtResource( "1_0p423" )
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 460.0
+offset_bottom = 834.0
+theme_override_constants/separation = 150
+
+[node name="ScreenTitle" type="Label" parent="MarginContainer/VBoxContainer"]
+offset_right = 440.0
+offset_bottom = 81.0
+theme_override_fonts/font = ExtResource( "1_cebw7" )
+theme_override_font_sizes/font_size = 64
+text = "Title"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Buttons" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+offset_top = 231.0
+offset_right = 440.0
+offset_bottom = 231.0
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="Buttons2" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+offset_top = 381.0
+offset_right = 440.0
+offset_bottom = 381.0
+theme_override_constants/separation = 50
+alignment = 1

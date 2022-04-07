@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://de0gonl44idrj"]
+
+[ext_resource type="Script" path="res://objects/jumper/jumper.gd" id="1_bqm1y"]
+[ext_resource type="Texture2D" uid="uid://dv31fv04psrso" path="res://objects/jumper/assets/jumper_texture.png" id="1_wrctf"]
+[ext_resource type="Shader" path="res://objects/color.gdshader" id="2_7ivmm"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ty13l"]
+shader = ExtResource( "2_7ivmm" )
+shader_param/color = Color(1, 0.866667, 0, 1)
+
+[sub_resource type="Gradient" id="Gradient_pq071"]
+offsets = PackedFloat32Array(0, 0.871345)
+colors = PackedColorArray(0, 0, 0, 0, 1, 0.733333, 0, 1)
+
+[node name="Jumper" type="Area2D"]
+script = ExtResource( "1_bqm1y" )
+
+[node name="Sprite" type="Sprite2D" parent="."]
+material = SubResource( "ShaderMaterial_ty13l" )
+rotation = 1.5708
+texture = ExtResource( "1_wrctf" )
+
+[node name="Collision" type="CollisionPolygon2D" parent="."]
+visible = false
+polygon = PackedVector2Array(21, 0, -21, 21, -21, -21)
+
+[node name="VisibleOnScreenNotifier" type="VisibleOnScreenNotifier2D" parent="."]
+visible = false
+rect = Rect2(-21, -21, 42, 42)
+
+[node name="Trail" type="Node" parent="."]
+
+[node name="Points" type="Line2D" parent="Trail"]
+gradient = SubResource( "Gradient_pq071" )
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier" to="." method="_on_screen_exited"]
