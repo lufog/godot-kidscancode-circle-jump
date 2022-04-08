@@ -1,18 +1,22 @@
-[gd_scene load_steps=3 format=3 uid="uid://bhu4fb5xfp07q"]
+[gd_scene load_steps=4 format=3 uid="uid://dx3ebmriyi6qk"]
 
 [ext_resource type="Script" path="res://main/main.gd" id="1_1h61n"]
-[ext_resource type="PackedScene" uid="uid://b7qimbug872d3" path="res://ui/screens.tscn" id="2_obuy5"]
+[ext_resource type="PackedScene" path="res://ui/screens/screens.tscn" id="2_obuy5"]
+[ext_resource type="PackedScene" uid="uid://v05o6mcvsc5p" path="res://ui/hud/hud.tscn" id="3_o7wot"]
 
 [node name="Main" type="Node"]
 script = ExtResource( "1_1h61n" )
 
+[node name="Screens" parent="." instance=ExtResource( "2_obuy5" )]
+
+[node name="HUD" parent="." instance=ExtResource( "3_o7wot" )]
+
 [node name="Start" type="Position2D" parent="."]
 
 [node name="Camera" type="Camera2D" parent="."]
+visible = false
 offset = Vector2(0, -200)
 current = true
 smoothing_enabled = true
-
-[node name="Screens" parent="." instance=ExtResource( "2_obuy5" )]
 
 [connection signal="start_game" from="Screens" to="." method="_new_game"]
