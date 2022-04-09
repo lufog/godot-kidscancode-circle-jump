@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://v05o6mcvsc5p"]
 
+[ext_resource type="Script" path="res://ui/hud/hud.gd" id="1_8nola"]
 [ext_resource type="Font" path="res://ui/assets/fonts/xolonium_regular.tres" id="1_jlkkj"]
-[ext_resource type="Script" path="res://ui/hud/hud.gd" id="1_ohw17"]
 
 [sub_resource type="Animation" id="Animation_dbqtw"]
 length = 0.001
@@ -111,7 +111,7 @@ tracks/2/keys = {
 }
 
 [node name="HUD" type="CanvasLayer"]
-script = ExtResource( "1_ohw17" )
+script = ExtResource( "1_8nola" )
 
 [node name="Score" type="MarginContainer" parent="."]
 anchor_top = 1.0

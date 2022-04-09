@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cu5up5jwpffxx"]
+[gd_scene load_steps=11 format=3 uid="uid://cu5up5jwpffxx"]
 
 [ext_resource type="Shader" path="res://objects/color.gdshader" id="1_3w38j"]
 [ext_resource type="Script" path="res://objects/circle/circle.gd" id="1_uonuk"]
@@ -8,6 +8,12 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dvxgt"]
 shader = ExtResource( "1_3w38j" )
 shader_param/color = Color(0.713726, 1, 0.74902, 1)
+shader_param/alpha = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nbpky"]
+shader = ExtResource( "1_3w38j" )
+shader_param/color = Color(0.713726, 1, 0.74902, 1)
+shader_param/alpha = 0.0
 
 [sub_resource type="Animation" id="Animation_jiigx"]
 length = 0.001
@@ -38,43 +44,44 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("SpriteEffect:scale")
+tracks/2/path = NodePath("SpriteEffect:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(1, 1)]
+"values": [false]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("SpriteEffect:modulate")
+tracks/3/path = NodePath("SpriteEffect:scale")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 0.501961)]
+"values": [Vector2(3, 3)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("SpriteEffect:visible")
+tracks/4/path = NodePath("SpriteEffect:material:shader_param/alpha")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
+"update": 0,
+"values": [0.0]
 }
 
 [sub_resource type="Animation" id="Animation_pxuqu"]
 resource_name = "capture"
 length = 0.5
+step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -82,10 +89,10 @@ tracks/0/path = NodePath("SpriteEffect:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [true]
+"values": [true, false]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -94,22 +101,22 @@ tracks/1/path = NodePath("SpriteEffect:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0.00276089, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(3, 3), Vector2(0, 0)]
+"values": [Vector2(3, 3), Vector2(1e-05, 1e-05)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("SpriteEffect:modulate")
+tracks/2/path = NodePath("SpriteEffect:material:shader_param/alpha")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0, 0.45),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.501961)]
+"values": [0.0, 1.0]
 }
 
 [sub_resource type="Animation" id="Animation_eonf7"]
@@ -152,8 +159,8 @@ texture = ExtResource( "1_wbyw3" )
 
 [node name="SpriteEffect" type="Sprite2D" parent="."]
 visible = false
-modulate = Color(1, 1, 1, 0.501961)
-material = SubResource( "ShaderMaterial_dvxgt" )
+material = SubResource( "ShaderMaterial_nbpky" )
+scale = Vector2(3, 3)
 texture = ExtResource( "1_wbyw3" )
 
 [node name="Collision" type="CollisionShape2D" parent="."]
