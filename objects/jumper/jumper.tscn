@@ -1,12 +1,15 @@
-[gd_scene load_steps=6 format=3 uid="uid://de0gonl44idrj"]
+[gd_scene load_steps=8 format=3 uid="uid://de0gonl44idrj"]
 
 [ext_resource type="Script" path="res://objects/jumper/jumper.gd" id="1_bqm1y"]
 [ext_resource type="Texture2D" uid="uid://dv31fv04psrso" path="res://objects/jumper/assets/jumper_texture.png" id="1_wrctf"]
 [ext_resource type="Shader" path="res://objects/color.gdshader" id="2_7ivmm"]
+[ext_resource type="AudioStream" uid="uid://bi5fm1y2dwrfk" path="res://objects/jumper/assets/sfx/70.ogg" id="4_haw36"]
+[ext_resource type="AudioStream" uid="uid://c0p8f34s0avr7" path="res://objects/jumper/assets/sfx/88.ogg" id="5_fq1j4"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ty13l"]
 shader = ExtResource( "2_7ivmm" )
-shader_param/color = Color(1, 0.866667, 0, 1)
+shader_param/color = Color(1, 1, 1, 1)
+shader_param/alpha = 1.0
 
 [sub_resource type="Gradient" id="Gradient_pq071"]
 offsets = PackedFloat32Array(0, 0.871345)
@@ -32,6 +35,12 @@ rect = Rect2(-21, -21, 42, 42)
 
 [node name="Points" type="Line2D" parent="Trail"]
 gradient = SubResource( "Gradient_pq071" )
+
+[node name="Jump" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( "4_haw36" )
+
+[node name="Capture" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( "5_fq1j4" )
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier" to="." method="_on_screen_exited"]

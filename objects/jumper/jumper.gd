@@ -11,7 +11,15 @@ var jump_speed := 1000
 var current_circle = null
 var trail_length := 25
 
+@onready var sprite := $Sprite as Sprite2D
 @onready var trail := $Trail/Points as Line2D
+@onready var _jump_sfx := $Jump as AudioStreamPlayer
+@onready var _capture_sfx := $Capture as AudioStreamPlayer
+
+
+func _ready() -> void:
+	sprite.material.set_shader_param("color", Settings.theme["player_body"])
+	trail.default_color = Settings.theme["player_trail"]
 
 
 func _physics_process(delta: float) -> void:
@@ -35,6 +43,9 @@ func _on_area_entered(circle: Circle) -> void:
 	current_circle = circle
 	velocity = Vector2.ZERO
 	captured.emit(current_circle)
+	
+	if Settings.enable_sound:
+		_capture_sfx.play()
 
 
 func _on_screen_exited() -> void:
@@ -46,6 +57,9 @@ func jump() -> void:
 	current_circle.implode()
 	current_circle = null
 	velocity = transform.x * jump_speed
+	
+	if Settings.enable_sound:
+		_jump_sfx.play()
 
 
 func die() -> void:

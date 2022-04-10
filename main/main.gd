@@ -11,6 +11,7 @@ var score: int
 @onready var hud := $HUD as HUD
 @onready var start := $Start as Position2D
 @onready var camera := $Camera as Camera2D
+@onready var music := $Music as AudioStreamPlayer
 
 
 func _ready() -> void:
@@ -30,6 +31,9 @@ func _new_game() -> void:
 	_spawn_circle(start.position)
 	hud.show()
 	hud.show_message("Go!")
+	
+	if Settings.enable_music:
+		music.play()
 
 
 func _spawn_circle(_position = null) -> void:
@@ -54,3 +58,6 @@ func _on_jumper_died() -> void:
 	tree.call_group("circles", "implode")
 	screens.game_over()
 	hud.hide()
+	
+	if Settings.enable_music:
+		music.stop()

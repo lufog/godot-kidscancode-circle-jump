@@ -1,0 +1,16 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOGGVorbis"
+uid="uid://cbbhcjh372cox"
+path="res://.godot/imported/light-puzzles.ogg-538c6fbe5ee5a59a63ca7256f241245e.oggvorbisstr"
+
+[deps]
+
+source_file="res://main/assets/music/light-puzzles.ogg"
+dest_files=["res://.godot/imported/light-puzzles.ogg-538c6fbe5ee5a59a63ca7256f241245e.oggvorbisstr"]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://dx3ebmriyi6qk"]
+[gd_scene load_steps=5 format=3 uid="uid://dx3ebmriyi6qk"]
 
 [ext_resource type="Script" path="res://main/main.gd" id="1_1h61n"]
-[ext_resource type="PackedScene" path="res://ui/screens/screens.tscn" id="2_obuy5"]
+[ext_resource type="PackedScene" uid="uid://4gsi4pfvn1j5" path="res://ui/screens/screens.tscn" id="2_obuy5"]
 [ext_resource type="PackedScene" uid="uid://v05o6mcvsc5p" path="res://ui/hud/hud.tscn" id="3_o7wot"]
+[ext_resource type="AudioStream" uid="uid://cbbhcjh372cox" path="res://main/assets/music/light-puzzles.ogg" id="4_txfmw"]
 
 [node name="Main" type="Node"]
 script = ExtResource( "1_1h61n" )
@@ -18,5 +19,8 @@ visible = false
 offset = Vector2(0, -200)
 current = true
 smoothing_enabled = true
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( "4_txfmw" )
 
 [connection signal="start_game" from="Screens" to="." method="_new_game"]

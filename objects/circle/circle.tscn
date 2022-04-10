@@ -1,18 +1,19 @@
-[gd_scene load_steps=11 format=3 uid="uid://cu5up5jwpffxx"]
+[gd_scene load_steps=12 format=3 uid="uid://cu5up5jwpffxx"]
 
 [ext_resource type="Shader" path="res://objects/color.gdshader" id="1_3w38j"]
 [ext_resource type="Script" path="res://objects/circle/circle.gd" id="1_uonuk"]
 [ext_resource type="Texture2D" uid="uid://b6f3o4i1sn1wi" path="res://objects/circle/assets/textures/circle1_n.png" id="1_wbyw3"]
 [ext_resource type="FontData" uid="uid://by5eeun81hxh3" path="res://ui/assets/fonts/Xolonium-Regular.ttf" id="4_ewjua"]
+[ext_resource type="AudioStream" uid="uid://cneqhhjuenjd7" path="res://objects/circle/assets/sfx/89.ogg" id="5_ona35"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_dvxgt"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gh070"]
 shader = ExtResource( "1_3w38j" )
-shader_param/color = Color(0.713726, 1, 0.74902, 1)
+shader_param/color = Color(1, 1, 1, 1)
 shader_param/alpha = 1.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nbpky"]
 shader = ExtResource( "1_3w38j" )
-shader_param/color = Color(0.713726, 1, 0.74902, 1)
+shader_param/color = Color(1, 1, 1, 1)
 shader_param/alpha = 0.0
 
 [sub_resource type="Animation" id="Animation_jiigx"]
@@ -154,7 +155,7 @@ data/0 = ExtResource( "4_ewjua" )
 script = ExtResource( "1_uonuk" )
 
 [node name="Sprite" type="Sprite2D" parent="."]
-material = SubResource( "ShaderMaterial_dvxgt" )
+material = SubResource( "ShaderMaterial_gh070" )
 texture = ExtResource( "1_wbyw3" )
 
 [node name="SpriteEffect" type="Sprite2D" parent="."]
@@ -188,3 +189,6 @@ theme_override_font_sizes/font_size = 64
 text = "1"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Beep" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( "5_ona35" )

@@ -1,0 +1,16 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOGGVorbis"
+uid="uid://cneqhhjuenjd7"
+path="res://.godot/imported/89.ogg-21fb7ac7bd75d01afea19725169286fd.oggvorbisstr"
+
+[deps]
+
+source_file="res://objects/circle/assets/sfx/89.ogg"
+dest_files=["res://.godot/imported/89.ogg-21fb7ac7bd75d01afea19725169286fd.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0

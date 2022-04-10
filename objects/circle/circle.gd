@@ -15,11 +15,13 @@ var orbit_start: float
 var jumper: Jumper = null
 
 @onready var sprite := $Sprite as Sprite2D
+@onready var sprite_effect := $SpriteEffect as Sprite2D
 @onready var collision := $Collision as CollisionShape2D
 @onready var pivot := $Pivot as Node2D
 @onready var orbit := $Pivot/Orbit as Position2D
 @onready var animation_player := $AnimationPlayer as AnimationPlayer
 @onready var orbits_counter := $OrbitsCounter as Label
+@onready var beep := $Beep as AudioStreamPlayer
 
 
 func _process(delta: float) -> void:
@@ -33,7 +35,7 @@ func _draw() -> void:
 	if jumper:
 		var r := ((radius - 50) / number_orbits) * (1 + number_orbits - current_orbits)
 		_draw_circle_arc_poly(Vector2.ZERO, r + 10, orbit_start + PI / 2, 
-				pivot.rotation + PI / 2, Color.RED)
+				pivot.rotation + PI / 2, Settings.theme["circle_fill"])
 
 
 func init(_position: Vector2, _radius: int, _mode := Modes.LIMITED) -> void:
@@ -46,17 +48,24 @@ func init(_position: Vector2, _radius: int, _mode := Modes.LIMITED) -> void:
 	orbit.position.x = radius + ORBIT_OFFSET
 	rotation_direction = [-1, 1][randi_range(0, 1)]
 	set_mode(_mode)
+	
+	sprite.material = sprite.material.duplicate()
+	sprite_effect.material = sprite.material
 
 
 func set_mode(_mode: Modes) -> void:
 	mode = _mode
+	var color: Color
 	match mode:
 		Modes.STATIC:
 			orbits_counter.hide()
+			color = Settings.theme["circle_static"]
 		Modes.LIMITED:
 			current_orbits = number_orbits
 			orbits_counter.text = str(current_orbits)
 			orbits_counter.show()
+			color = Settings.theme["circle_limited"]
+	sprite.material.set_shader_param("color", color)
 
 
 func implode() -> void:
@@ -82,6 +91,9 @@ func _check_orbits() -> void:
 			jumper = null
 			implode()
 		orbit_start = pivot.rotation
+		
+		if Settings.enable_sound:
+			beep.play()
 
 
 func _draw_circle_arc_poly(center, _radius, angle_from, angle_to, color) -> void:
