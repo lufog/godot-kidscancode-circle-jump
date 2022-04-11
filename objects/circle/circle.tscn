@@ -1,10 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://cu5up5jwpffxx"]
+[gd_scene load_steps=13 format=3 uid="uid://tktg1acd6q6r"]
 
 [ext_resource type="Shader" path="res://objects/color.gdshader" id="1_3w38j"]
 [ext_resource type="Script" path="res://objects/circle/circle.gd" id="1_uonuk"]
-[ext_resource type="Texture2D" uid="uid://b6f3o4i1sn1wi" path="res://objects/circle/assets/textures/circle1_n.png" id="1_wbyw3"]
-[ext_resource type="FontData" uid="uid://by5eeun81hxh3" path="res://ui/assets/fonts/Xolonium-Regular.ttf" id="4_ewjua"]
-[ext_resource type="AudioStream" uid="uid://cneqhhjuenjd7" path="res://objects/circle/assets/sfx/89.ogg" id="5_ona35"]
+[ext_resource type="Texture2D" uid="uid://qa5teumgoawd" path="res://objects/circle/assets/textures/circle.png" id="3_ntewl"]
+[ext_resource type="FontData" uid="uid://ceradg541vku5" path="res://ui/assets/fonts/Xolonium-Regular.ttf" id="4_ewjua"]
+[ext_resource type="AudioStream" uid="uid://dbg08adpm8e1n" path="res://objects/circle/assets/sfx/89.ogg" id="5_kpwct"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gh070"]
 shader = ExtResource( "1_3w38j" )
@@ -79,6 +79,34 @@ tracks/4/keys = {
 "values": [0.0]
 }
 
+[sub_resource type="Animation" id="Animation_eonf7"]
+resource_name = "implode"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.1, 0.1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.501961), Color(1, 1, 1, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_pxuqu"]
 resource_name = "capture"
 length = 0.5
@@ -120,32 +148,11 @@ tracks/2/keys = {
 "values": [0.0, 1.0]
 }
 
-[sub_resource type="Animation" id="Animation_eonf7"]
-resource_name = "implode"
-length = 0.4
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.4),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(0.1, 0.1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.4),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0.501961), Color(1, 1, 1, 0)]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1mdcg"]
+_data = {
+"RESET": SubResource( "Animation_jiigx" ),
+"capture": SubResource( "Animation_pxuqu" ),
+"implode": SubResource( "Animation_eonf7" )
 }
 
 [sub_resource type="Font" id="Font_mypfm"]
@@ -156,13 +163,13 @@ script = ExtResource( "1_uonuk" )
 
 [node name="Sprite" type="Sprite2D" parent="."]
 material = SubResource( "ShaderMaterial_gh070" )
-texture = ExtResource( "1_wbyw3" )
+texture = ExtResource( "3_ntewl" )
 
 [node name="SpriteEffect" type="Sprite2D" parent="."]
 visible = false
 material = SubResource( "ShaderMaterial_nbpky" )
 scale = Vector2(3, 3)
-texture = ExtResource( "1_wbyw3" )
+texture = ExtResource( "3_ntewl" )
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 
@@ -171,9 +178,9 @@ texture = ExtResource( "1_wbyw3" )
 [node name="Orbit" type="Position2D" parent="Pivot"]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/RESET = SubResource( "Animation_jiigx" )
-anims/capture = SubResource( "Animation_pxuqu" )
-anims/implode = SubResource( "Animation_eonf7" )
+libraries = {
+"": SubResource( "AnimationLibrary_1mdcg" )
+}
 
 [node name="OrbitsCounter" type="Label" parent="."]
 anchor_left = 0.5
@@ -191,4 +198,4 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Beep" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( "5_ona35" )
+stream = ExtResource( "5_kpwct" )

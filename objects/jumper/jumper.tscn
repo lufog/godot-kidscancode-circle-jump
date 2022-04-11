@@ -1,10 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://de0gonl44idrj"]
+[gd_scene load_steps=8 format=3 uid="uid://brhncotsnt63c"]
 
 [ext_resource type="Script" path="res://objects/jumper/jumper.gd" id="1_bqm1y"]
-[ext_resource type="Texture2D" uid="uid://dv31fv04psrso" path="res://objects/jumper/assets/jumper_texture.png" id="1_wrctf"]
 [ext_resource type="Shader" path="res://objects/color.gdshader" id="2_7ivmm"]
-[ext_resource type="AudioStream" uid="uid://bi5fm1y2dwrfk" path="res://objects/jumper/assets/sfx/70.ogg" id="4_haw36"]
-[ext_resource type="AudioStream" uid="uid://c0p8f34s0avr7" path="res://objects/jumper/assets/sfx/88.ogg" id="5_fq1j4"]
+[ext_resource type="Texture2D" uid="uid://bmaugw5kjw33" path="res://objects/jumper/assets/textures/jumper.png" id="3_nidhd"]
+[ext_resource type="AudioStream" uid="uid://b6ganq7q6nx6y" path="res://objects/jumper/assets/sfx/70.ogg" id="4_haw36"]
+[ext_resource type="AudioStream" uid="uid://dibbq7kie3hbq" path="res://objects/jumper/assets/sfx/88.ogg" id="5_fq1j4"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ty13l"]
 shader = ExtResource( "2_7ivmm" )
@@ -21,7 +21,7 @@ script = ExtResource( "1_bqm1y" )
 [node name="Sprite" type="Sprite2D" parent="."]
 material = SubResource( "ShaderMaterial_ty13l" )
 rotation = 1.5708
-texture = ExtResource( "1_wrctf" )
+texture = ExtResource( "3_nidhd" )
 
 [node name="Collision" type="CollisionPolygon2D" parent="."]
 visible = false

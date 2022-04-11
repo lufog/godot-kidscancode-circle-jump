@@ -63,7 +63,6 @@ func jump() -> void:
 
 
 func die() -> void:
-	print("died")
 	died.emit()
 	current_circle = null
 	queue_free()

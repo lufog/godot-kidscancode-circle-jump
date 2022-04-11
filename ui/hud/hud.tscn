@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://v05o6mcvsc5p"]
+[gd_scene load_steps=7 format=3 uid="uid://v05o6mcvsc5p"]
 
 [ext_resource type="Script" path="res://ui/hud/hud.gd" id="1_8nola"]
 [ext_resource type="Font" path="res://ui/assets/fonts/xolonium_regular.tres" id="1_jlkkj"]
@@ -110,6 +110,13 @@ tracks/2/keys = {
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vey1v"]
+_data = {
+"RESET": SubResource( "Animation_dbqtw" ),
+"init": SubResource( "Animation_f3icl" ),
+"show_message": SubResource( "Animation_l6b3w" )
+}
+
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource( "1_8nola" )
 
@@ -162,6 +169,6 @@ vertical_alignment = 1
 clip_text = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/RESET = SubResource( "Animation_dbqtw" )
-anims/init = SubResource( "Animation_f3icl" )
-anims/show_message = SubResource( "Animation_l6b3w" )
+libraries = {
+"": SubResource( "AnimationLibrary_vey1v" )
+}
