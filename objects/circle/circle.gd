@@ -14,6 +14,10 @@ var current_orbits := 0
 var orbit_start: float
 var jumper: Jumper = null
 
+var move_tween: Tween
+var move_range := 50
+var move_speed := 1.0
+
 @onready var sprite := $Sprite as Sprite2D
 @onready var sprite_effect := $SpriteEffect as Sprite2D
 @onready var collision := $Collision as CollisionShape2D
@@ -22,7 +26,6 @@ var jumper: Jumper = null
 @onready var animation_player := $AnimationPlayer as AnimationPlayer
 @onready var orbits_counter := $OrbitsCounter as Label
 @onready var beep := $Beep as AudioStreamPlayer
-
 
 func _process(delta: float) -> void:
 	pivot.rotation += rotation_direction * rotation_speed * delta
@@ -38,7 +41,7 @@ func _draw() -> void:
 				pivot.rotation + PI / 2, Settings.theme["circle_fill"])
 
 
-func init(_position: Vector2, _radius: int, _mode := Modes.LIMITED) -> void:
+func init(_position: Vector2, _radius: int, _mode := Modes.STATIC) -> void:
 	position = _position
 	radius = _radius
 	var sprite_radius = sprite.texture.get_size().x / 2
@@ -48,6 +51,7 @@ func init(_position: Vector2, _radius: int, _mode := Modes.LIMITED) -> void:
 	orbit.position.x = radius + ORBIT_OFFSET
 	rotation_direction = [-1, 1][randi_range(0, 1)]
 	set_mode(_mode)
+	set_tween()
 	
 	sprite.material = sprite.material.duplicate()
 	sprite_effect.material = sprite.material
@@ -66,6 +70,16 @@ func set_mode(_mode: Modes) -> void:
 			orbits_counter.show()
 			color = Settings.theme["circle_limited"]
 	sprite.material.set_shader_param("color", color)
+
+
+func set_tween(object=null, key=null) -> void:
+	if move_range == 0:
+		return
+	move_tween = create_tween()
+	move_tween.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN_OUT)
+	move_tween.tween_property(self, "position:x", position.x + move_range, move_speed)
+	move_tween.tween_property(self, "position:x", position.x - move_range, move_speed)
+	move_tween.set_loops(20) # TODO: Research how to fix tween infinite loops
 
 
 func implode() -> void:
