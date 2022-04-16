@@ -4,7 +4,19 @@ extends Node
 var circle_scene := preload("res://objects/circle/circle.tscn") as PackedScene
 var jumper_scene := preload("res://objects/jumper/jumper.tscn") as PackedScene
 var player: Jumper
-var score: int
+
+var _score: int
+var score: 
+	get:
+		return _score
+	set(value):
+		_score = value
+		hud.update_score(_score)
+		if (_score > 0) and (_score % Settings.circles_per_level == 0):
+			level += 1
+			hud.show_message("Level %s" % str(level))
+
+var level: int
 
 @onready var tree := get_tree()
 @onready var screens := $Screens as Screens
@@ -21,7 +33,6 @@ func _ready() -> void:
 
 func _new_game() -> void:
 	score = 0
-	hud.update_score(score)
 	camera.position = start.position
 	player = jumper_scene.instantiate() as Jumper
 	player.position = start.position
@@ -51,7 +62,6 @@ func _on_jumper_captured(circle: Circle) -> void:
 	circle.capture(player)
 	_spawn_circle.call_deferred()
 	score += 1
-	hud.update_score(score)
 
 
 func _on_jumper_died() -> void:
