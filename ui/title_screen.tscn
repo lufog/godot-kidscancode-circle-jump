@@ -1,8 +1,19 @@
-[gd_scene load_steps=4 format=3 uid="uid://wkmnprb1otsn"]
+[gd_scene load_steps=10 format=3 uid="uid://wkmnprb1otsn"]
 
 [ext_resource type="PackedScene" uid="uid://c12fmwexfuaoo" path="res://ui/base_screen.tscn" id="1_fs6ah"]
 [ext_resource type="Texture2D" uid="uid://b2ui68g00m5j7" path="res://ui/assets/textures/buttons/right.png" id="2_4k5u1"]
 [ext_resource type="Texture2D" uid="uid://brfwmiear7sag" path="res://ui/assets/textures/buttons/gear.png" id="3_ag66o"]
+[ext_resource type="Font" path="res://ui/assets/fonts/xolonium_regular.tres" id="4_63hn7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_aq8lg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yk6ad"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3f4yh"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6v5tt"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lgxft"]
 
 [node name="TitleScreen" instance=ExtResource( "1_fs6ah" )]
 
@@ -26,4 +37,17 @@ texture_normal = ExtResource( "3_ag66o" )
 
 [node name="Buttons2" parent="MarginContainer/VBoxContainer" index="2"]
 offset_top = 481.0
-offset_bottom = 481.0
+offset_bottom = 520.0
+
+[node name="About" type="Button" parent="MarginContainer/VBoxContainer/Buttons2" index="0" groups=["buttons"]]
+offset_left = 169.0
+offset_right = 271.0
+offset_bottom = 39.0
+theme_override_fonts/font = ExtResource( "4_63hn7" )
+theme_override_font_sizes/font_size = 32
+theme_override_styles/hover = SubResource( "StyleBoxEmpty_aq8lg" )
+theme_override_styles/pressed = SubResource( "StyleBoxEmpty_yk6ad" )
+theme_override_styles/focus = SubResource( "StyleBoxEmpty_3f4yh" )
+theme_override_styles/disabled = SubResource( "StyleBoxEmpty_6v5tt" )
+theme_override_styles/normal = SubResource( "StyleBoxEmpty_lgxft" )
+text = "About"

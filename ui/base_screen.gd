@@ -23,3 +23,7 @@ func dissapier() -> void:
 	tween = create_tween()
 	tween.tween_property(self, "offset:x", TRANS_EFFECT_OFFSET_END, TRANS_EFFECT_DURATION) \
 			.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN_OUT)
+
+
+func _on_rich_text_label_meta_clicked(meta) -> void:
+	OS.shell_open(meta)

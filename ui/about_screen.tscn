@@ -1,0 +1,45 @@
+[gd_scene load_steps=3 format=3 uid="uid://cq8c6l34d1r4"]
+
+[ext_resource type="PackedScene" uid="uid://c12fmwexfuaoo" path="res://ui/base_screen.tscn" id="1_7jnkr"]
+[ext_resource type="Texture2D" uid="uid://cfquivh0gqn0v" path="res://ui/assets/textures/buttons/return.png" id="2_h83dy"]
+
+[node name="AboutScreen" instance=ExtResource( "1_7jnkr" )]
+
+[node name="VBoxContainer" parent="MarginContainer" index="0"]
+theme_override_constants/separation = 50
+
+[node name="ScreenTitle" parent="MarginContainer/VBoxContainer" index="0"]
+text = "About"
+
+[node name="Buttons" parent="MarginContainer/VBoxContainer" index="1"]
+offset_top = 131.0
+offset_bottom = 638.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer/Buttons" index="0"]
+offset_right = 440.0
+offset_bottom = 507.0
+size_flags_horizontal = 3
+theme_override_font_sizes/normal_font_size = 24
+bbcode_enabled = true
+text = "[center][u]Circle Jump[/u]
+[img]res://assets/images/godot_logo.png[/img][/center]
+Circle Jump is an open source tutorial game made with the Godot Game Engine. You can find the tutorial and the game's source code here:
+
+[url=https://github.com/kidscancode/circle_jump]Circle Jump Source[/url]
+
+Copyright © 2022 KidsCanCode
+
+[url=https://github.com/kidscancode/circle_jump/blob/master/LICENSE]License Information[/url]"
+fit_content_height = true
+
+[node name="Buttons2" parent="MarginContainer/VBoxContainer" index="2"]
+offset_top = 688.0
+offset_bottom = 788.0
+
+[node name="Home" type="TextureButton" parent="MarginContainer/VBoxContainer/Buttons2" index="0" groups=["buttons"]]
+offset_left = 170.0
+offset_right = 270.0
+offset_bottom = 100.0
+texture_normal = ExtResource( "2_h83dy" )
+
+[connection signal="meta_clicked" from="MarginContainer/VBoxContainer/Buttons/RichTextLabel" to="." method="_on_rich_text_label_meta_clicked"]

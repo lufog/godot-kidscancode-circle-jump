@@ -13,6 +13,7 @@ var music_buttons := { true: preload("res://ui/assets/textures/buttons/music_on.
 @onready var tree := get_tree()
 @onready var title_screen := $TitleScreen as BaseScreen
 @onready var settings_screen := $SettingsScreen as BaseScreen
+@onready var about_screen := $AboutScreen as BaseScreen
 @onready var game_over_screen := $GameOverScreen as BaseScreen
 @onready var click := $Click as AudioStreamPlayer
 
@@ -21,7 +22,7 @@ func _ready() -> void:
 	_change_screen(title_screen)
 
 
-func _on_button_pressed(button: TextureButton) -> void:
+func _on_button_pressed(button: BaseButton) -> void:
 	match button.name:
 		StringName("Home"):
 			_change_screen(title_screen)
@@ -35,17 +36,26 @@ func _on_button_pressed(button: TextureButton) -> void:
 		StringName("Sound"):
 			Settings.enable_sound = !Settings.enable_sound
 			button.texture_normal = sound_buttons[Settings.enable_sound]
+			Settings.save_settings()
 		StringName("Music"):
 			Settings.enable_music = !Settings.enable_music
 			button.texture_normal = music_buttons[Settings.enable_music]
-	
+			Settings.save_settings()
+		StringName("About"):
+			_change_screen(about_screen)
+		
 	if Settings.enable_sound:
 		click.play()
 
 func _register_buttons() -> void:
-	var buttons := get_tree().get_nodes_in_group("buttons") as Array[TextureButton]
+	var buttons := get_tree().get_nodes_in_group("buttons") as Array[BaseButton]
 	for button in buttons:
 		button.pressed.connect(self._on_button_pressed.bind(button))
+		match button.name:
+			StringName("Sound"):
+				button.texture_normal = sound_buttons[Settings.enable_sound]
+			StringName("Music"):
+				button.texture_normal = music_buttons[Settings.enable_music]
 
 
 func _change_screen(new_screen: BaseScreen) -> void:

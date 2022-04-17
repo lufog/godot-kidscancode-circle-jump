@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://187ix2vejcy1"]
+[gd_scene load_steps=6 format=3 uid="uid://187ix2vejcy1"]
 
 [ext_resource type="Script" path="res://ui/screens/screens.gd" id="1_ni4kj"]
 [ext_resource type="PackedScene" uid="uid://wkmnprb1otsn" path="res://ui/title_screen.tscn" id="2_nm462"]
 [ext_resource type="PackedScene" uid="uid://xwynnx6k7o5x" path="res://ui/settings_screen.tscn" id="3_0myvy"]
 [ext_resource type="PackedScene" uid="uid://c5g7blp6e81oo" path="res://ui/game_over_screen.tscn" id="4_1woi4"]
+[ext_resource type="PackedScene" uid="uid://cq8c6l34d1r4" path="res://ui/about_screen.tscn" id="5_6y244"]
 
 [node name="Screens" type="Node"]
 script = ExtResource( "1_ni4kj" )
@@ -13,5 +14,7 @@ script = ExtResource( "1_ni4kj" )
 [node name="SettingsScreen" parent="." instance=ExtResource( "3_0myvy" )]
 
 [node name="GameOverScreen" parent="." instance=ExtResource( "4_1woi4" )]
+
+[node name="AboutScreen" parent="." instance=ExtResource( "5_6y244" )]
 
 [node name="Click" type="AudioStreamPlayer" parent="."]
