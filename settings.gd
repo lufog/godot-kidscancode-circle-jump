@@ -57,3 +57,16 @@ func load_settings():
 		enable_sound = f.get_var()
 		enable_music = f.get_var()
 		f.close()
+
+
+static func rand_weighted(weights: Array):
+	var sum := 0
+	for weight in weights:
+		sum += weight
+	var num := randi_range(0, sum)
+	for i in weights.size():
+		if num < weights[i]:
+			return i
+		num -= weights[i]
+	
+	return 0

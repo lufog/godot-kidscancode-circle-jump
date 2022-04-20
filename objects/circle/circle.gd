@@ -5,7 +5,7 @@ extends Area2D
 const ORBIT_OFFSET = 25
 enum Modes { STATIC, LIMITED }
 
-var radius: float
+var radius := 100.0
 var rotation_speed := PI
 var rotation_direction := 0
 var mode := Modes.STATIC
@@ -15,8 +15,8 @@ var orbit_start: float
 var jumper: Jumper = null
 
 var move_tween: Tween
-var move_range := 50
-var move_speed := 1.0
+var move_range := 0.0
+var move_speed := 0.0
 
 @onready var sprite := $Sprite as Sprite2D
 @onready var sprite_effect := $SpriteEffect as Sprite2D
@@ -41,16 +41,26 @@ func _draw() -> void:
 				pivot.rotation + PI / 2, Settings.theme["circle_fill"])
 
 
-func init(_position: Vector2, _radius: int, _mode := Modes.STATIC) -> void:
+func init(_position: Vector2, level: int = 1) -> void:
 	position = _position
-	radius = _radius
+	var _mode: int = Settings.rand_weighted([10, level - 1])
+	set_mode(_mode)
+	
+	var move_chance := clampf(level - 10, 0, 9) / 10.0
+	if randf() < move_chance:
+		move_range = maxf(25.0, 100.0 * randf_range(0.75, 1.26) * move_chance) * [-1, 1][randi_range(0, 1)]
+		move_speed = maxf(2.5 - ceil(level / 5.0) * 0.25, 0.75)
+	var small_chance := minf(0.9, maxf(0, (level-10) / 20.0))
+	if randf() < small_chance:
+		radius = maxf(50.0, radius - level * randf_range(0.75, 1.25))
+		
 	var sprite_radius = sprite.texture.get_size().x / 2
 	sprite.scale = Vector2.ONE * radius / sprite_radius
 	collision.shape = CircleShape2D.new()
 	collision.shape.radius = radius
 	orbit.position.x = radius + ORBIT_OFFSET
 	rotation_direction = [-1, 1][randi_range(0, 1)]
-	set_mode(_mode)
+	
 	set_tween()
 	
 	sprite.material = sprite.material.duplicate()

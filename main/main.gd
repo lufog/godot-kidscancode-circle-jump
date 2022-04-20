@@ -54,7 +54,7 @@ func _spawn_circle(_position = null) -> void:
 		var y = randf_range(-500, -400)
 		_position = player.current_circle.position + Vector2(x, y)
 	add_child(circle)
-	circle.init(_position, 100)
+	circle.init(_position, level)
 
 
 func _on_jumper_captured(circle: Circle) -> void:
