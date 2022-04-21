@@ -5,7 +5,7 @@ extends Area2D
 const ORBIT_OFFSET = 25
 enum Modes { STATIC, LIMITED }
 
-var radius := 100.0
+var radius := 80.0
 var rotation_speed := PI
 var rotation_direction := 0
 var mode := Modes.STATIC

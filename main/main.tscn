@@ -1,9 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://g0dgsxjmjm5f"]
+[gd_scene load_steps=7 format=3 uid="uid://g0dgsxjmjm5f"]
 
 [ext_resource type="Script" path="res://main/main.gd" id="1_1h61n"]
 [ext_resource type="PackedScene" uid="uid://v05o6mcvsc5p" path="res://ui/hud/hud.tscn" id="2_eu20h"]
 [ext_resource type="PackedScene" uid="uid://187ix2vejcy1" path="res://ui/screens/screens.tscn" id="2_obuy5"]
 [ext_resource type="AudioStream" uid="uid://doadnvp1gilma" path="res://main/assets/music/light-puzzles.ogg" id="4_txfmw"]
+[ext_resource type="PackedScene" uid="uid://cno35egusp7ue" path="res://ui/background.tscn" id="5_3j8vr"]
+
+[sub_resource type="Environment" id="Environment_1y0v3"]
+background_canvas_max_layer = -2
+glow_intensity = 0.36
+glow_blend_mode = 0
+glow_hdr_threshold = 0.64
 
 [node name="Main" type="Node"]
 script = ExtResource( "1_1h61n" )
@@ -21,5 +28,10 @@ smoothing_enabled = true
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( "4_txfmw" )
+
+[node name="Background" parent="." instance=ExtResource( "5_3j8vr" )]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( "Environment_1y0v3" )
 
 [connection signal="start_game" from="Screens" to="." method="_new_game"]

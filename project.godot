@@ -60,6 +60,10 @@ window/size/viewport_height=854
 window/handheld/orientation=1
 window/stretch/mode="viewport"
 
+[gui]
+
+fonts/dynamic_fonts/use_oversampling=false
+
 [input_devices]
 
 pointing/emulate_touch_from_mouse=true
