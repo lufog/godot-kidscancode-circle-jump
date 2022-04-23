@@ -2,10 +2,9 @@ class_name Circle
 extends Area2D
 
 
-const ORBIT_OFFSET = 25
 enum Modes { STATIC, LIMITED }
 
-var radius := 80.0
+var radius := 120.0
 var rotation_speed := PI
 var rotation_direction := 0
 var mode := Modes.STATIC
@@ -36,7 +35,7 @@ func _process(delta: float) -> void:
 
 func _draw() -> void:
 	if jumper:
-		var r := ((radius - 50) / number_orbits) * (1 + number_orbits - current_orbits)
+		var r := ((radius - 70) / number_orbits) * (1 + number_orbits - current_orbits)
 		_draw_circle_arc_poly(Vector2.ZERO, r + 10, orbit_start + PI / 2, 
 				pivot.rotation + PI / 2, Settings.theme["circle_fill"])
 
@@ -58,13 +57,13 @@ func init(_position: Vector2, level: int = 1) -> void:
 	sprite.scale = Vector2.ONE * radius / sprite_radius
 	collision.shape = CircleShape2D.new()
 	collision.shape.radius = radius
-	orbit.position.x = radius + ORBIT_OFFSET
+	orbit.position.x = radius
 	rotation_direction = [-1, 1][randi_range(0, 1)]
 	
 	set_tween()
 	
 	sprite.material = sprite.material.duplicate()
-	sprite_effect.material = sprite.material
+	sprite_effect.material = sprite_effect.material.duplicate()
 
 
 func set_mode(_mode: Modes) -> void:
@@ -80,6 +79,7 @@ func set_mode(_mode: Modes) -> void:
 			orbits_counter.show()
 			color = Settings.theme["circle_limited"]
 	sprite.material.set_shader_param("color", color)
+	sprite_effect.material.set_shader_param("color", color)
 
 
 func set_tween(object=null, key=null) -> void:

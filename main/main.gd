@@ -16,6 +16,7 @@ var score:
 			level += 1
 			hud.show_message("Level %s" % str(level))
 
+var highscore := 0
 var level: int
 
 @onready var tree := get_tree()
@@ -28,6 +29,7 @@ var level: int
 
 func _ready() -> void:
 	randomize()
+	load_score()
 	hud.hide()
 
 
@@ -65,9 +67,25 @@ func _on_jumper_captured(circle: Circle) -> void:
 
 
 func _on_jumper_died() -> void:
+	if score > highscore:
+		highscore = score
+		save_score()
 	tree.call_group("circles", "implode")
-	screens.game_over()
+	screens.game_over(score, highscore)
 	hud.hide()
 	
 	if Settings.enable_music:
 		music.stop()
+
+func save_score() -> void:
+	var file = File.new()
+	file.open(Settings.SCORE_FILE, File.WRITE)
+	file.store_var(highscore)
+	file.close()
+
+func load_score() -> void:
+	var file = File.new()
+	if file.file_exists(Settings.SCORE_FILE):
+		file.open(Settings.SCORE_FILE, File.READ)
+		highscore = file.get_var()
+	file.close()

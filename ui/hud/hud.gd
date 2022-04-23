@@ -8,6 +8,10 @@ extends CanvasLayer
 @onready var animation_player := $AnimationPlayer as AnimationPlayer
 
 
+func _ready() -> void:
+	message.pivot_offset = message.size / 2
+
+
 func update_score(value: int) -> void:
 	score_value.text = str(value)
 

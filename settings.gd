@@ -1,7 +1,8 @@
 extends Node
 
 
-var settings_file = "user://settings.save"
+const SETTINGS_FILE = "user://settings.save"
+const SCORE_FILE = "user://highscore.save"
 
 var enable_sound := true
 var enable_music := true
@@ -44,7 +45,7 @@ func _ready() -> void:
 
 func save_settings():
 	var f = File.new()
-	f.open(settings_file, File.WRITE)
+	f.open(SETTINGS_FILE, File.WRITE)
 	f.store_var(enable_sound)
 	f.store_var(enable_music)
 	f.close()
@@ -52,8 +53,8 @@ func save_settings():
 
 func load_settings():
 	var f = File.new()
-	if f.file_exists(settings_file):
-		f.open(settings_file, File.READ)
+	if f.file_exists(SETTINGS_FILE):
+		f.open(SETTINGS_FILE, File.READ)
 		enable_sound = f.get_var()
 		enable_music = f.get_var()
 		f.close()

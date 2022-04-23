@@ -15,6 +15,8 @@ var music_buttons := { true: preload("res://ui/assets/textures/buttons/music_on.
 @onready var settings_screen := $SettingsScreen as BaseScreen
 @onready var about_screen := $AboutScreen as BaseScreen
 @onready var game_over_screen := $GameOverScreen as BaseScreen
+@onready var game_over_score := $GameOverScreen/MarginContainer/VBoxContainer/Scores/Score as Label
+@onready var game_over_highscore := $GameOverScreen/MarginContainer/VBoxContainer/Scores/Best as Label
 @onready var click := $Click as AudioStreamPlayer
 
 func _ready() -> void:
@@ -72,5 +74,7 @@ func _change_screen(new_screen: BaseScreen) -> void:
 		await current_screen.tween.finished
 
 
-func game_over() -> void:
+func game_over(score, highscore) -> void:
+	game_over_score.text = "Score: %s" % score
+	game_over_highscore.text = "Best: %s" % highscore
 	_change_screen(game_over_screen)

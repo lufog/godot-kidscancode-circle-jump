@@ -1,22 +1,41 @@
-[gd_scene load_steps=15 format=3 uid="uid://tktg1acd6q6r"]
+[gd_scene load_steps=14 format=3]
 
 [ext_resource type="Shader" path="res://objects/color.gdshader" id="1_3w38j"]
 [ext_resource type="Script" path="res://objects/circle/circle.gd" id="1_uonuk"]
-[ext_resource type="Shader" path="res://objects/circle/circle.gdshader" id="2_gkbsa"]
-[ext_resource type="Texture2D" uid="uid://pggnnqeclom0" path="res://objects/circle/assets/textures/circle.png" id="3_ntewl"]
-[ext_resource type="Texture2D" uid="uid://qa5teumgoawd" path="res://objects/circle/assets/textures/circle_2.png" id="3_qggep"]
+[ext_resource type="Texture2D" path="res://objects/circle/assets/textures/circle_2.png" id="3_ntewl"]
 [ext_resource type="FontData" uid="uid://ceradg541vku5" path="res://ui/assets/fonts/Xolonium-Regular.ttf" id="4_ewjua"]
 [ext_resource type="AudioStream" uid="uid://dbg08adpm8e1n" path="res://objects/circle/assets/sfx/89.ogg" id="5_kpwct"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_q5a6m"]
-shader = ExtResource( "2_gkbsa" )
+[sub_resource type="Shader" id="Shader_sct1r"]
+code = "shader_type canvas_item;
+
+uniform vec4 color : hint_color;
+uniform float alpha : hint_range(0.0, 1.0, 0.01) = 1.0;
+uniform float speed : hint_range(0, 20);
+uniform float glow_radius : hint_range(0, 1);
+uniform float glow_width : hint_range(0, 1);
+
+void fragment() {
+	vec2 center = vec2(0.5);
+	float time = TIME * speed;
+	float rad = glow_radius - 0.005 * sin(time);
+	float thikness = glow_width + 0.05 * cos(time);
+	float dist = distance(UV, center);
+	
+	COLOR.rgb = color.rgb;
+	COLOR.a = texture(TEXTURE, UV).a * alpha + smoothstep(thikness / 2.0, 0.0, abs(dist - rad));
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gh070"]
+shader = SubResource( "Shader_sct1r" )
 shader_param/color = Color(1, 1, 1, 1)
 shader_param/alpha = 1.0
-shader_param/speed = null
-shader_param/glow_radius = 0.292
-shader_param/glow_width = 0.177
+shader_param/speed = 0.0
+shader_param/glow_radius = 0.45
+shader_param/glow_width = 0.25
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_uvgxs"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nbpky"]
 shader = ExtResource( "1_3w38j" )
 shader_param/color = Color(1, 1, 1, 1)
 shader_param/alpha = 0.0
@@ -81,7 +100,7 @@ tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [1.0]
+"values": [0.0]
 }
 
 [sub_resource type="Animation" id="Animation_pxuqu"]
@@ -119,10 +138,10 @@ tracks/2/path = NodePath("SpriteEffect:material:shader_param/alpha")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(1.04083e-16, 0.5),
+"times": PackedFloat32Array(0, 0.45),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [0.9, 0.0]
+"values": [0.0, 1.0]
 }
 
 [sub_resource type="Animation" id="Animation_eonf7"]
@@ -167,14 +186,13 @@ data/0 = ExtResource( "4_ewjua" )
 script = ExtResource( "1_uonuk" )
 
 [node name="Sprite" type="Sprite2D" parent="."]
-material = SubResource( "ShaderMaterial_q5a6m" )
-texture = ExtResource( "3_ntewl" )
+material = SubResource( "ShaderMaterial_gh070" )
 
 [node name="SpriteEffect" type="Sprite2D" parent="."]
 visible = false
-material = SubResource( "ShaderMaterial_uvgxs" )
-scale = Vector2(1e-05, 1e-05)
-texture = ExtResource( "3_qggep" )
+material = SubResource( "ShaderMaterial_nbpky" )
+scale = Vector2(3, 3)
+texture = ExtResource( "3_ntewl" )
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 

@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Texture2D" path="res://objects/circle/assets/textures/circle_2.png" id="1_4wifi"]
+
+[sub_resource type="Curve" id="Curve_3nyxa"]
+min_value = -1.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+
+[node name="Background" type="CanvasLayer"]
+layer = -1
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2(240, -100)
+rotation = 1.5708
+amount = 4
+lifetime = 20.0
+preprocess = 10.0
+texture = ExtResource( "1_4wifi" )
+emission_shape = 3
+emission_rect_extents = Vector2(1, 240)
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 45.0
+initial_velocity_max = 75.0
+scale_amount_min = 0.2
+scale_amount_max = 0.4
+hue_variation_min = 0.5
+hue_variation_max = 1.0
+hue_variation_curve = SubResource( "Curve_3nyxa" )
