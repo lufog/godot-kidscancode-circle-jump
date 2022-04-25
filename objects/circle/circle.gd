@@ -4,7 +4,7 @@ extends Area2D
 
 enum Modes { STATIC, LIMITED }
 
-var radius := 120.0
+var radius := 80.0
 var rotation_speed := PI
 var rotation_direction := 0
 var mode := Modes.STATIC
@@ -35,7 +35,7 @@ func _process(delta: float) -> void:
 
 func _draw() -> void:
 	if jumper:
-		var r := ((radius - 70) / number_orbits) * (1 + number_orbits - current_orbits)
+		var r := ((radius - 40) / number_orbits) * (1 + number_orbits - current_orbits)
 		_draw_circle_arc_poly(Vector2.ZERO, r + 10, orbit_start + PI / 2, 
 				pivot.rotation + PI / 2, Settings.theme["circle_fill"])
 
@@ -54,10 +54,10 @@ func init(_position: Vector2, level: int = 1) -> void:
 		radius = maxf(50.0, radius - level * randf_range(0.75, 1.25))
 		
 	var sprite_radius = sprite.texture.get_size().x / 2
-	sprite.scale = Vector2.ONE * radius / sprite_radius
+	sprite.scale = Vector2.ONE * radius / (sprite_radius - 60)
 	collision.shape = CircleShape2D.new()
 	collision.shape.radius = radius
-	orbit.position.x = radius
+	orbit.position.x = radius + 30
 	rotation_direction = [-1, 1][randi_range(0, 1)]
 	
 	set_tween()
