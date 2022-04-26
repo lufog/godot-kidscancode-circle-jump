@@ -18,6 +18,7 @@ var score:
 
 var highscore := 0
 var level: int
+var fade_music: Tween
 
 @onready var tree := get_tree()
 @onready var screens := $Screens as Screens
@@ -75,7 +76,7 @@ func _on_jumper_died() -> void:
 	hud.hide()
 	
 	if Settings.enable_music:
-		music.stop()
+		_fade_music()
 
 func save_score() -> void:
 	var file = File.new()
@@ -89,3 +90,13 @@ func load_score() -> void:
 		file.open(Settings.SCORE_FILE, File.READ)
 		highscore = file.get_var()
 	file.close()
+
+
+func _fade_music() -> void:
+	fade_music = create_tween()
+	fade_music.tween_property(music, "volume_db", -50.0, 1.0) \
+			.set_trans(Tween.TRANS_SINE) \
+			.set_ease(Tween.EASE_IN)
+	@warning_ignore(redundant_await)
+	await fade_music.finished
+	music.stop()
