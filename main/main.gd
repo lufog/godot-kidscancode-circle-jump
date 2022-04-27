@@ -11,12 +11,16 @@ var score:
 		return _score
 	set(value):
 		_score = value
+		if _score > 1 and _score > highscore and !new_highscore:
+			hud.show_message("New record!")
+			new_highscore = true
 		hud.update_score(_score)
 		if (_score > 0) and (_score % Settings.circles_per_level == 0):
 			level += 1
 			hud.show_message("Level %s" % str(level))
 
 var highscore := 0
+var new_highscore := false
 var level: int
 var fade_music: Tween
 
@@ -35,6 +39,7 @@ func _ready() -> void:
 
 
 func _new_game() -> void:
+	new_highscore = false
 	score = 0
 	camera.position = start.position
 	player = jumper_scene.instantiate() as Jumper
@@ -47,6 +52,7 @@ func _new_game() -> void:
 	hud.show_message("Go!")
 	
 	if Settings.enable_music:
+		music.volume_db = 0
 		music.play()
 
 
