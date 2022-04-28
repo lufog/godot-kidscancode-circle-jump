@@ -2,6 +2,8 @@ class_name Circle
 extends Area2D
 
 
+signal full_orbit
+
 enum Modes { STATIC, LIMITED }
 
 var radius := 80.0
@@ -28,14 +30,17 @@ var move_speed := 0.0
 
 func _process(delta: float) -> void:
 	pivot.rotation += rotation_direction * rotation_speed * delta
-	if mode == Modes.LIMITED and jumper:
+	if jumper:
 		_check_orbits()
 		update()
 
 
 func _draw() -> void:
+	if mode != Modes.LIMITED:
+		return
+	
 	if jumper:
-		var r := ((radius - 40) / number_orbits) * (1 + number_orbits - current_orbits)
+		var r := ((radius - 40) / number_orbits) * (1 + current_orbits)
 		_draw_circle_arc_poly(Vector2.ZERO, r + 10, orbit_start + PI / 2, 
 				pivot.rotation + PI / 2, Settings.theme["circle_fill"])
 
@@ -75,7 +80,7 @@ func set_mode(_mode: Modes) -> void:
 			color = Settings.theme["circle_static"]
 		Modes.LIMITED:
 			current_orbits = number_orbits
-			orbits_counter.text = str(current_orbits)
+			orbits_counter.text = str(number_orbits)
 			orbits_counter.show()
 			color = Settings.theme["circle_limited"]
 	sprite.material.set_shader_param("color", color)
@@ -93,6 +98,7 @@ func set_tween(object=null, key=null) -> void:
 
 
 func implode() -> void:
+	jumper = null
 	animation_player.play("implode")
 	@warning_ignore(redundant_await) # TODO: remove warning ignore after fix: https://github.com/godotengine/godot/issues/56265
 	await animation_player.animation_finished
@@ -100,6 +106,7 @@ func implode() -> void:
 
 
 func capture(_jumper: Jumper) -> void:
+	current_orbits = 0
 	jumper = _jumper
 	animation_player.play("capture")
 	pivot.rotation = (jumper.position - position).angle()
@@ -108,16 +115,18 @@ func capture(_jumper: Jumper) -> void:
 
 func _check_orbits() -> void:
 	if abs(pivot.rotation - orbit_start) > 2 * PI:
-		current_orbits -= 1
-		orbits_counter.text = str(current_orbits)
-		if current_orbits == 0:
-			jumper.die()
-			jumper = null
-			implode()
-		orbit_start = pivot.rotation
+		current_orbits += 1
+		full_orbit.emit()
+		if mode == Modes.LIMITED:
+			orbits_counter.text = str(number_orbits - current_orbits)
+			if current_orbits >= number_orbits:
+				jumper.die()
+				jumper = null
+				implode()
+			if Settings.enable_sound:
+				beep.play()
 		
-		if Settings.enable_sound:
-			beep.play()
+		orbit_start = pivot.rotation
 
 
 func _draw_circle_arc_poly(center, _radius, angle_from, angle_to, color) -> void:

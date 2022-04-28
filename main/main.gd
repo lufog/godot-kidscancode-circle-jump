@@ -9,6 +9,7 @@ var _score: int
 var score: 
 	get:
 		return _score
+	
 	set(value):
 		_score = value
 		if _score > 1 and _score > highscore and !new_highscore:
@@ -18,6 +19,15 @@ var score:
 		if (_score > 0) and (_score % Settings.circles_per_level == 0):
 			level += 1
 			hud.show_message("Level %s" % str(level))
+
+var _bonus: int
+var bonus:
+	get:
+		return _bonus
+	
+	set(value):
+		_bonus = value
+		hud.update_bonus(_bonus)
 
 var highscore := 0
 var new_highscore := false
@@ -41,6 +51,7 @@ func _ready() -> void:
 func _new_game() -> void:
 	new_highscore = false
 	score = 0
+	bonus = 0
 	camera.position = start.position
 	player = jumper_scene.instantiate() as Jumper
 	player.position = start.position
@@ -63,6 +74,7 @@ func _spawn_circle(_position = null) -> void:
 		var y = randf_range(-500, -400)
 		_position = player.current_circle.position + Vector2(x, y)
 	add_child(circle)
+	circle.full_orbit.connect(self._set_bonus.bind(1))
 	circle.init(_position, level)
 
 
@@ -70,7 +82,8 @@ func _on_jumper_captured(circle: Circle) -> void:
 	camera.position = circle.position
 	circle.capture(player)
 	_spawn_circle.call_deferred()
-	score += 1
+	score += 1 * bonus
+	bonus += 1
 
 
 func _on_jumper_died() -> void:
@@ -84,11 +97,17 @@ func _on_jumper_died() -> void:
 	if Settings.enable_music:
 		_fade_music()
 
+
+func _set_bonus(value) -> void:
+	bonus = value
+
+
 func save_score() -> void:
 	var file = File.new()
 	file.open(Settings.SCORE_FILE, File.WRITE)
 	file.store_var(highscore)
 	file.close()
+
 
 func load_score() -> void:
 	var file = File.new()
