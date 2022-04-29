@@ -16,9 +16,6 @@ var score:
 			hud.show_message("New record!")
 			new_highscore = true
 		hud.update_score(_score)
-		if (_score > 0) and (_score % Settings.circles_per_level == 0):
-			level += 1
-			hud.show_message("Level %s" % str(level))
 
 var _bonus: int
 var bonus:
@@ -30,6 +27,7 @@ var bonus:
 		hud.update_bonus(_bonus)
 
 var highscore := 0
+var number_circles := 0
 var new_highscore := false
 var level: int
 var fade_music: Tween
@@ -52,6 +50,7 @@ func _new_game() -> void:
 	new_highscore = false
 	score = 0
 	bonus = 0
+	number_circles = 0
 	camera.position = start.position
 	player = jumper_scene.instantiate() as Jumper
 	player.position = start.position
@@ -84,6 +83,10 @@ func _on_jumper_captured(circle: Circle) -> void:
 	_spawn_circle.call_deferred()
 	score += 1 * bonus
 	bonus += 1
+	number_circles += 1
+	if (number_circles > 0) and (number_circles % Settings.circles_per_level == 0):
+		level += 1
+		hud.show_message("Level %s" % str(level))
 
 
 func _on_jumper_died() -> void:

@@ -6,7 +6,9 @@ extends CanvasLayer
 @onready var score_value := $Score/HBoxContainer/Value as Label
 @onready var bonus := $BonusBox/Bonus as Label
 @onready var message := $Message as Label
-@onready var animation_player := $AnimationPlayer as AnimationPlayer
+@onready var bonus_animation_player := $BonusAnimationPlayer as AnimationPlayer
+@onready var score_animation_player := $ScoreAnimationPlayer as AnimationPlayer
+@onready var message_animation_player := $MessageAnimationPlayer as AnimationPlayer
 
 
 func _ready() -> void:
@@ -15,16 +17,18 @@ func _ready() -> void:
 
 func update_score(value: int) -> void:
 	score_value.text = str(value)
+	if value > 1:
+		score_animation_player.play("score")
 
 func update_bonus(value: int) -> void:
 	bonus.text = str(value) + "x"
 	if value > 1:
-		animation_player.play("bonus")
+		bonus_animation_player.play("bonus")
 
 
 func show_message(text: String) -> void:
 	message.text = text
-	animation_player.play("show_message")
+	message_animation_player.play("show_message")
 
 
 func hide() -> void:
