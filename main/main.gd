@@ -50,6 +50,7 @@ func _new_game() -> void:
 	new_highscore = false
 	score = 0
 	bonus = 0
+	level = 0
 	number_circles = 0
 	camera.position = start.position
 	player = jumper_scene.instantiate() as Jumper

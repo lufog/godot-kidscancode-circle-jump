@@ -87,14 +87,14 @@ func set_mode(_mode: Modes) -> void:
 	sprite_effect.material.set_shader_param("color", color)
 
 
-func set_tween(object=null, key=null) -> void:
+func set_tween() -> void:
 	if move_range == 0:
 		return
 	move_tween = create_tween()
 	move_tween.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN_OUT)
 	move_tween.tween_property(self, "position:x", position.x + move_range, move_speed)
 	move_tween.tween_property(self, "position:x", position.x - move_range, move_speed)
-	move_tween.set_loops(20) # TODO: Research how to fix tween infinite loops
+	move_tween.set_loops()
 
 
 func implode() -> void:
