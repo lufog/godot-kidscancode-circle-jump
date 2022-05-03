@@ -15,10 +15,9 @@ func _ready() -> void:
 	message.pivot_offset = message.size / 2
 
 
-func update_score(value: int) -> void:
+func update_score(value: float) -> void:
 	score_value.text = str(value)
-	if value > 1:
-		score_animation_player.play("score")
+	score_animation_player.play("score")
 
 func update_bonus(value: int) -> void:
 	bonus.text = str(value) + "x"
