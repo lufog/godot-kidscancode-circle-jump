@@ -63,6 +63,39 @@ window/stretch/mode="viewport"
 [gui]
 
 fonts/dynamic_fonts/use_oversampling=false
+_global_script_classes=[{
+"base": "CanvasLayer",
+"class": &"BaseScreen",
+"language": &"GDScript",
+"path": "res://ui/base_screen.gd"
+}, {
+"base": "Area2D",
+"class": &"Circle",
+"language": &"GDScript",
+"path": "res://objects/circle/circle.gd"
+}, {
+"base": "CanvasLayer",
+"class": &"HUD",
+"language": &"GDScript",
+"path": "res://ui/hud/hud.gd"
+}, {
+"base": "Area2D",
+"class": &"Jumper",
+"language": &"GDScript",
+"path": "res://objects/jumper/jumper.gd"
+}, {
+"base": "Node",
+"class": &"Screens",
+"language": &"GDScript",
+"path": "res://ui/screens/screens.gd"
+}]
+_global_script_class_icons={
+"BaseScreen": "",
+"Circle": "",
+"HUD": "",
+"Jumper": "",
+"Screens": ""
+}
 
 [input_devices]
 

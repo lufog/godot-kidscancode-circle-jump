@@ -118,7 +118,7 @@ func load_score() -> void:
 	if file.file_exists(Settings.SCORE_FILE):
 		file.open(Settings.SCORE_FILE, File.READ)
 		highscore = file.get_var()
-	file.close()
+		file.close()
 
 
 func _fade_music() -> void:
