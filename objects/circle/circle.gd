@@ -100,7 +100,6 @@ func set_tween() -> void:
 func implode() -> void:
 	jumper = null
 	animation_player.play("implode")
-	@warning_ignore(redundant_await) # TODO: remove warning ignore after fix: https://github.com/godotengine/godot/issues/56265
 	await animation_player.animation_finished
 	queue_free()
 

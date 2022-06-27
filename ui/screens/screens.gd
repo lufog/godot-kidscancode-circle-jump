@@ -30,7 +30,6 @@ func _on_button_pressed(button: BaseButton) -> void:
 			_change_screen(title_screen)
 		StringName("Play"):
 			_change_screen(null)
-			@warning_ignore(redundant_await) # TODO: remove warning ignore after fix: https://github.com/godotengine/godot/issues/56265
 			await tree.create_timer(0.5).timeout
 			start_game.emit()
 		StringName("Settings"):
@@ -63,14 +62,12 @@ func _register_buttons() -> void:
 func _change_screen(new_screen: BaseScreen) -> void:
 	if current_screen:
 		current_screen.dissapier()
-		@warning_ignore(redundant_await) # TODO: remove warning ignore after fix: https://github.com/godotengine/godot/issues/56265
 		await current_screen.tween.finished
 		
 	current_screen = new_screen
 	
 	if new_screen:
 		current_screen.appear()
-		@warning_ignore(redundant_await) # TODO: remove warning ignore after fix: https://github.com/godotengine/godot/issues/56265
 		await current_screen.tween.finished
 
 

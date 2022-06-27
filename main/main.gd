@@ -126,6 +126,5 @@ func _fade_music() -> void:
 	fade_music.tween_property(music, "volume_db", -50.0, 1.0) \
 			.set_trans(Tween.TRANS_SINE) \
 			.set_ease(Tween.EASE_IN)
-	@warning_ignore(redundant_await)
 	await fade_music.finished
 	music.stop()
