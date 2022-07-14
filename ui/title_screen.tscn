@@ -5,17 +5,17 @@
 [ext_resource type="Texture2D" uid="uid://brfwmiear7sag" path="res://ui/assets/textures/buttons/gear.png" id="3_ag66o"]
 [ext_resource type="Font" path="res://ui/assets/fonts/xolonium_regular.tres" id="4_63hn7"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lgxft"]
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_aq8lg"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yk6ad"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3f4yh"]
-
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6v5tt"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lgxft"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3f4yh"]
 
-[node name="TitleScreen" instance=ExtResource( "1_fs6ah" )]
+[node name="TitleScreen" instance=ExtResource("1_fs6ah")]
 
 [node name="ScreenTitle" parent="MarginContainer/VBoxContainer" index="0"]
 text = "Circle Jump"
@@ -27,13 +27,13 @@ offset_bottom = 331.0
 offset_left = 95.0
 offset_right = 195.0
 offset_bottom = 100.0
-texture_normal = ExtResource( "2_4k5u1" )
+texture_normal = ExtResource("2_4k5u1")
 
 [node name="Settings" type="TextureButton" parent="MarginContainer/VBoxContainer/Buttons" index="1" groups=["buttons"]]
 offset_left = 245.0
 offset_right = 345.0
 offset_bottom = 100.0
-texture_normal = ExtResource( "3_ag66o" )
+texture_normal = ExtResource("3_ag66o")
 
 [node name="Buttons2" parent="MarginContainer/VBoxContainer" index="2"]
 offset_top = 481.0
@@ -43,11 +43,11 @@ offset_bottom = 520.0
 offset_left = 169.0
 offset_right = 271.0
 offset_bottom = 39.0
-theme_override_fonts/font = ExtResource( "4_63hn7" )
+theme_override_fonts/font = ExtResource("4_63hn7")
 theme_override_font_sizes/font_size = 32
-theme_override_styles/hover = SubResource( "StyleBoxEmpty_aq8lg" )
-theme_override_styles/pressed = SubResource( "StyleBoxEmpty_yk6ad" )
-theme_override_styles/focus = SubResource( "StyleBoxEmpty_3f4yh" )
-theme_override_styles/disabled = SubResource( "StyleBoxEmpty_6v5tt" )
-theme_override_styles/normal = SubResource( "StyleBoxEmpty_lgxft" )
+theme_override_styles/normal = SubResource("StyleBoxEmpty_lgxft")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_aq8lg")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_yk6ad")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_6v5tt")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_3f4yh")
 text = "About"

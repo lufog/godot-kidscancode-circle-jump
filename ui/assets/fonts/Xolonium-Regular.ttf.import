@@ -12,7 +12,9 @@ dest_files=["res://.godot/imported/Xolonium-Regular.ttf-cc64bbedcb7203deca126af8
 
 [params]
 
+face_index=0
 antialiased=true
+generate_mipmaps=false
 multichannel_signed_distance_field=false
 msdf_pixel_range=8
 msdf_size=48

@@ -5,26 +5,24 @@ var circle_scene := preload("res://objects/circle/circle.tscn") as PackedScene
 var jumper_scene := preload("res://objects/jumper/jumper.tscn") as PackedScene
 var player: Jumper
 
-var _score: int
-var score: 
+var score: int: 
 	get:
-		return _score
+		return score
 	
 	set(value):
-		_score = value
-		if _score > 1 and _score > highscore and !new_highscore:
+		score = value
+		if score > 1 and score > highscore and !new_highscore:
 			hud.show_message("New record!")
 			new_highscore = true
-		hud.update_score(_score)
+		hud.update_score(score)
 
-var _bonus: int
-var bonus:
+var bonus: int:
 	get:
-		return _bonus
+		return bonus
 	
 	set(value):
-		_bonus = value
-		hud.update_bonus(_bonus)
+		bonus = value
+		hud.update_bonus(bonus)
 
 var highscore := 0
 var number_circles := 0

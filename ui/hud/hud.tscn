@@ -34,7 +34,7 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0qwes"]
 _data = {
-"bonus": SubResource( "Animation_hql8g" )
+"bonus": SubResource("Animation_hql8g")
 }
 
 [sub_resource type="Animation" id="Animation_eusp6"]
@@ -68,7 +68,7 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ps7f6"]
 _data = {
-"score": SubResource( "Animation_eusp6" )
+"score": SubResource("Animation_eusp6")
 }
 
 [sub_resource type="Animation" id="Animation_dbqtw"]
@@ -180,22 +180,22 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vey1v"]
 _data = {
-"RESET": SubResource( "Animation_dbqtw" ),
-"init": SubResource( "Animation_f3icl" ),
-"show_message": SubResource( "Animation_l6b3w" )
+"RESET": SubResource("Animation_dbqtw"),
+"init": SubResource("Animation_f3icl"),
+"show_message": SubResource("Animation_l6b3w")
 }
 
 [node name="HUD" type="CanvasLayer"]
-script = ExtResource( "1_8nola" )
+script = ExtResource("1_8nola")
 
 [node name="Score" type="MarginContainer" parent="."]
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_top = -121.0
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_top = 20
 theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Score"]
@@ -210,7 +210,7 @@ offset_left = 194.0
 offset_right = 301.0
 offset_bottom = 81.0
 size_flags_vertical = 1
-theme_override_fonts/font = ExtResource( "1_jlkkj" )
+theme_override_fonts/font = ExtResource("1_jlkkj")
 theme_override_font_sizes/font_size = 32
 text = "Score:"
 vertical_alignment = 1
@@ -219,16 +219,16 @@ vertical_alignment = 1
 offset_left = 305.0
 offset_right = 440.0
 offset_bottom = 81.0
-theme_override_fonts/font = ExtResource( "1_jlkkj" )
+theme_override_fonts/font = ExtResource("1_jlkkj")
 theme_override_font_sizes/font_size = 64
 text = "100"
 
 [node name="BonusBox" type="MarginContainer" parent="."]
 offset_right = 124.0
 offset_bottom = 121.0
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_top = 20
 theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
 [node name="Bonus" type="Label" parent="BonusBox"]
@@ -236,7 +236,7 @@ offset_left = 20.0
 offset_top = 20.0
 offset_right = 104.0
 offset_bottom = 101.0
-theme_override_fonts/font = ExtResource( "1_jlkkj" )
+theme_override_fonts/font = ExtResource("1_jlkkj")
 theme_override_font_sizes/font_size = 64
 text = "1x"
 
@@ -246,7 +246,7 @@ anchor_right = 1.0
 anchor_bottom = 0.5
 offset_top = -40.5
 offset_bottom = 40.5
-theme_override_fonts/font = ExtResource( "1_jlkkj" )
+theme_override_fonts/font = ExtResource("1_jlkkj")
 theme_override_font_sizes/font_size = 64
 text = "Message"
 horizontal_alignment = 1
@@ -255,16 +255,16 @@ clip_text = true
 
 [node name="BonusAnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource( "AnimationLibrary_0qwes" )
+"": SubResource("AnimationLibrary_0qwes")
 }
 
 [node name="ScoreAnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../MessageAnimationPlayer")
 libraries = {
-"": SubResource( "AnimationLibrary_ps7f6" )
+"": SubResource("AnimationLibrary_ps7f6")
 }
 
 [node name="MessageAnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource( "AnimationLibrary_vey1v" )
+"": SubResource("AnimationLibrary_vey1v")
 }

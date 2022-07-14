@@ -1,10 +1,11 @@
 [gd_scene load_steps=3 format=3 uid="uid://cno35egusp7ue"]
 
-[ext_resource type="Texture2D" uid="uid://qa5teumgoawd" path="res://objects/circle/assets/textures/circle.png" id="1_4wifi"]
+[ext_resource type="Texture2D" uid="uid://qa5teumgoawd" path="res://objects/circle/assets/textures/circle_2.png" id="1_4wifi"]
 
 [sub_resource type="Curve" id="Curve_3nyxa"]
 min_value = -1.0
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
 
 [node name="Background" type="CanvasLayer"]
 layer = -1
@@ -21,7 +22,7 @@ rotation = 1.5708
 amount = 4
 lifetime = 20.0
 preprocess = 10.0
-texture = ExtResource( "1_4wifi" )
+texture = ExtResource("1_4wifi")
 emission_shape = 3
 emission_rect_extents = Vector2(1, 240)
 spread = 0.0
@@ -32,4 +33,4 @@ scale_amount_min = 0.2
 scale_amount_max = 0.4
 hue_variation_min = 0.5
 hue_variation_max = 1.0
-hue_variation_curve = SubResource( "Curve_3nyxa" )
+hue_variation_curve = SubResource("Curve_3nyxa")

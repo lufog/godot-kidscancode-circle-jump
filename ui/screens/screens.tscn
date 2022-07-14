@@ -7,14 +7,14 @@
 [ext_resource type="PackedScene" uid="uid://cq8c6l34d1r4" path="res://ui/about_screen.tscn" id="5_6y244"]
 
 [node name="Screens" type="Node"]
-script = ExtResource( "1_ni4kj" )
+script = ExtResource("1_ni4kj")
 
-[node name="TitleScreen" parent="." instance=ExtResource( "2_nm462" )]
+[node name="TitleScreen" parent="." instance=ExtResource("2_nm462")]
 
-[node name="SettingsScreen" parent="." instance=ExtResource( "3_0myvy" )]
+[node name="SettingsScreen" parent="." instance=ExtResource("3_0myvy")]
 
-[node name="GameOverScreen" parent="." instance=ExtResource( "4_1woi4" )]
+[node name="GameOverScreen" parent="." instance=ExtResource("4_1woi4")]
 
-[node name="AboutScreen" parent="." instance=ExtResource( "5_6y244" )]
+[node name="AboutScreen" parent="." instance=ExtResource("5_6y244")]
 
 [node name="Click" type="AudioStreamPlayer" parent="."]

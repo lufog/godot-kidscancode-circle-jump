@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://c12fmwexfuaoo" path="res://ui/base_screen.tscn" id="1_7jnkr"]
 [ext_resource type="Texture2D" uid="uid://cfquivh0gqn0v" path="res://ui/assets/textures/buttons/return.png" id="2_h83dy"]
 
-[node name="AboutScreen" instance=ExtResource( "1_7jnkr" )]
+[node name="AboutScreen" instance=ExtResource("1_7jnkr")]
 
 [node name="VBoxContainer" parent="MarginContainer" index="0"]
 theme_override_constants/separation = 50
@@ -40,6 +40,6 @@ offset_bottom = 788.0
 offset_left = 170.0
 offset_right = 270.0
 offset_bottom = 100.0
-texture_normal = ExtResource( "2_h83dy" )
+texture_normal = ExtResource("2_h83dy")
 
 [connection signal="meta_clicked" from="MarginContainer/VBoxContainer/Buttons/RichTextLabel" to="." method="_on_rich_text_label_meta_clicked"]

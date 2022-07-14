@@ -7,11 +7,11 @@
 [ext_resource type="PackedScene" uid="uid://cno35egusp7ue" path="res://ui/background.tscn" id="5_3j8vr"]
 
 [node name="Main" type="Node"]
-script = ExtResource( "1_1h61n" )
+script = ExtResource("1_1h61n")
 
-[node name="Screens" parent="." instance=ExtResource( "2_obuy5" )]
+[node name="Screens" parent="." instance=ExtResource("2_obuy5")]
 
-[node name="HUD" parent="." instance=ExtResource( "2_eu20h" )]
+[node name="HUD" parent="." instance=ExtResource("2_eu20h")]
 
 [node name="Start" type="Position2D" parent="."]
 
@@ -21,8 +21,8 @@ current = true
 smoothing_enabled = true
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( "4_txfmw" )
+stream = ExtResource("4_txfmw")
 
-[node name="Background" parent="." instance=ExtResource( "5_3j8vr" )]
+[node name="Background" parent="." instance=ExtResource("5_3j8vr")]
 
 [connection signal="start_game" from="Screens" to="." method="_new_game"]
