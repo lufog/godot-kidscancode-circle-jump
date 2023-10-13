@@ -49,7 +49,9 @@ func _on_button_pressed(button: BaseButton) -> void:
 		click.play()
 
 func _register_buttons() -> void:
-	var buttons := get_tree().get_nodes_in_group("buttons") as Array[BaseButton]
+	var buttons: Array[BaseButton] = []
+	buttons.assign(get_tree().get_nodes_in_group("buttons"))
+	
 	for button in buttons:
 		button.pressed.connect(self._on_button_pressed.bind(button))
 		match button.name:

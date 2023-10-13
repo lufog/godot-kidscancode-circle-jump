@@ -1,7 +1,7 @@
 [remap]
 
 importer="oggvorbisstr"
-type="AudioStreamOGGVorbis"
+type="AudioStreamOggVorbis"
 uid="uid://doadnvp1gilma"
 path="res://.godot/imported/light-puzzles.ogg-538c6fbe5ee5a59a63ca7256f241245e.oggvorbisstr"
 
@@ -14,3 +14,6 @@ dest_files=["res://.godot/imported/light-puzzles.ogg-538c6fbe5ee5a59a63ca7256f24
 
 loop=true
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

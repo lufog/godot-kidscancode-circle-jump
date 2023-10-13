@@ -33,7 +33,7 @@ var fade_music: Tween
 @onready var tree := get_tree()
 @onready var screens := $Screens as Screens
 @onready var hud := $HUD as HUD
-@onready var start := $Start as Position2D
+@onready var start := $Start as Marker2D
 @onready var camera := $Camera as Camera2D
 @onready var music := $Music as AudioStreamPlayer
 
@@ -41,7 +41,7 @@ var fade_music: Tween
 func _ready() -> void:
 	randomize()
 	load_score()
-	hud.hide()
+	hud.hide_hud()
 
 
 func _new_game() -> void:
@@ -105,16 +105,13 @@ func _set_bonus(value) -> void:
 
 
 func save_score() -> void:
-	var file = File.new()
-	file.open(Settings.SCORE_FILE, File.WRITE)
+	var file = FileAccess.open(Settings.SCORE_FILE, FileAccess.WRITE)
 	file.store_var(highscore)
-	file.close()
 
 
 func load_score() -> void:
-	var file = File.new()
-	if file.file_exists(Settings.SCORE_FILE):
-		file.open(Settings.SCORE_FILE, File.READ)
+	if FileAccess.file_exists(Settings.SCORE_FILE):
+		var file = FileAccess.open(Settings.SCORE_FILE, FileAccess.READ)
 		highscore = file.get_var()
 		file.close()
 

@@ -23,7 +23,7 @@ var move_speed := 0.0
 @onready var sprite_effect := $SpriteEffect as Sprite2D
 @onready var collision := $Collision as CollisionShape2D
 @onready var pivot := $Pivot as Node2D
-@onready var orbit := $Pivot/Orbit as Position2D
+@onready var orbit := $Pivot/Orbit as Marker2D
 @onready var animation_player := $AnimationPlayer as AnimationPlayer
 @onready var orbits_counter := $OrbitsCounter as Label
 @onready var beep := $Beep as AudioStreamPlayer
@@ -32,7 +32,7 @@ func _process(delta: float) -> void:
 	pivot.rotation += rotation_direction * rotation_speed * delta
 	if jumper:
 		_check_orbits()
-		update()
+		queue_redraw()
 
 
 func _draw() -> void:
@@ -47,6 +47,7 @@ func _draw() -> void:
 
 func init(_position: Vector2, level: int = 1) -> void:
 	position = _position
+	@warning_ignore("static_called_on_instance")
 	var _mode: int = Settings.rand_weighted([10, level - 1])
 	set_mode(_mode)
 	
@@ -83,8 +84,8 @@ func set_mode(_mode: Modes) -> void:
 			orbits_counter.text = str(number_orbits)
 			orbits_counter.show()
 			color = Settings.theme["circle_limited"]
-	sprite.material.set_shader_param("color", color)
-	sprite_effect.material.set_shader_param("color", color)
+	sprite.material.set_shader_parameter("color", color)
+	sprite_effect.material.set_shader_parameter("color", color)
 
 
 func set_tween() -> void:

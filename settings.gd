@@ -44,17 +44,15 @@ func _ready() -> void:
 
 
 func save_settings():
-	var f = File.new()
-	f.open(SETTINGS_FILE, File.WRITE)
+	var f = FileAccess.open(SETTINGS_FILE, FileAccess.WRITE)
 	f.store_var(enable_sound)
 	f.store_var(enable_music)
 	f.close()
 
 
 func load_settings():
-	var f = File.new()
-	if f.file_exists(SETTINGS_FILE):
-		f.open(SETTINGS_FILE, File.READ)
+	if FileAccess.file_exists(SETTINGS_FILE):
+		var f = FileAccess.open(SETTINGS_FILE, FileAccess.READ)
 		enable_sound = f.get_var()
 		enable_music = f.get_var()
 		f.close()

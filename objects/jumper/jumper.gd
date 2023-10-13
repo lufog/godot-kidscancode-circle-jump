@@ -18,7 +18,7 @@ var trail_length := 25
 
 
 func _ready() -> void:
-	sprite.material.set_shader_param("color", Settings.theme["player_body"])
+	sprite.material.set_shader_parameter("color", Settings.theme["player_body"])
 	var trail_color = Settings.theme["player_trail"]
 	trail.gradient.set_color(1, trail_color)
 	trail_color.a = 0

@@ -30,9 +30,9 @@ func show_message(text: String) -> void:
 	message_animation_player.play("show_message")
 
 
-func hide() -> void:
+func hide_hud() -> void:
 	score.hide()
 
 
-func show() -> void:
+func show_hud() -> void:
 	score.show()
